@@ -18,14 +18,14 @@ class UnetBlock_Encode(nn.Module):
             nn.Conv3d(self.in_chns, self.out_chns, kernel_size=(1, 1, 3),
                       padding=(0, 0, 1)),
             nn.BatchNorm3d(self.out_chns),
-            nn.ReLU6(inplace=True)
+            nn.ReLU(inplace=True)
         )
 
         self.conv2_1 = nn.Sequential(
             nn.Conv3d(self.out_chns, self.out_chns, kernel_size=(3, 3, 1),
                       padding=(1, 1, 0), groups=1),
             nn.BatchNorm3d(self.out_chns),
-            nn.ReLU6(inplace=True),
+            nn.ReLU(inplace=True),
             nn.Dropout(p=0.2)
         )
 
@@ -57,14 +57,14 @@ class UnetBlock_Encode_4(nn.Module):
             nn.Conv3d(self.in_chns, self.out_chns, kernel_size=(1, 1, 3),
                       padding=(0, 0, 1)),
             nn.BatchNorm3d(self.out_chns),
-            nn.ReLU6(inplace=True)
+            nn.ReLU(inplace=True)
         )
 
         self.conv2_1 = nn.Sequential(
             nn.Conv3d(self.out_chns, self.out_chns, kernel_size=(3, 3, 1),
                       padding=(1, 1, 0), groups=self.out_chns),
             nn.BatchNorm3d(self.out_chns),
-            nn.ReLU6(inplace=True),
+            nn.ReLU(inplace=True),
             nn.Dropout(p=0.2)
         )
 
@@ -100,7 +100,7 @@ class UnetBlock_Up(nn.Module):
             nn.Conv3d(in_channels, out_channel, kernel_size=1,
                       padding=0, groups=1),
             nn.BatchNorm3d(out_channel),
-            nn.ReLU6(inplace=True),
+            nn.ReLU(inplace=True),
             nn.Dropout(p=0.2)
         )
 
