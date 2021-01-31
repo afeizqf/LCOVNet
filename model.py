@@ -30,7 +30,7 @@ class UnetBlock_Encode(nn.Module):
         )
 
         self.conv2_2 = nn.Sequential(
-            nn.AvgPool3d(kernel_size=4, stride=2),
+            nn.AvgPool3d(kernel_size=4, stride=2, padding=1),
             nn.Conv3d(self.out_chns, self.out_chns, kernel_size=1,
                       padding=0),
             nn.BatchNorm3d(self.out_chns),
@@ -69,11 +69,9 @@ class UnetBlock_Encode_4(nn.Module):
         )
 
         self.conv2_2 = nn.Sequential(
-            nn.Upsample(scale_factor=2, mode='trilinear', align_corners=False),
             nn.Conv3d(self.out_chns, self.out_chns, kernel_size=1,
                       padding=0),
-            nn.BatchNorm3d(self.out_chns),
-            nn.AvgPool3d(kernel_size=4, stride=2)
+            nn.BatchNorm3d(self.out_chns)
         )
 
     def forward(self, x):
