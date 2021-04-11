@@ -177,9 +177,9 @@ class UNet_Seg(nn.Module):
         output = torch.sigmoid(f8)
         return output
 
-class UNet3D(nn.Module):
+class LCOVNet(nn.Module):
     def __init__(self, input_channels, n_classes):
-        super(UNet3D, self).__init__()
+        super(LCOVNet, self).__init__()
         self.seg_network = UNet_Seg(input_channels, n_classes)
 
     def seg(self, x):
