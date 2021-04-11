@@ -11,7 +11,7 @@ import time
 import SimpleITK as sitk
 import sys
 from config import TrainConfig
-from UNet import UNet3D
+from model import LCOVNet
 from apex import amp
 
 
@@ -42,7 +42,7 @@ def main():
 
     criterion = utils.log_loss().to(device)
     d = torch.device(type='cuda', index=config.gpus[0])
-    model = UNet3D(config.input_channels, config.n_classes).to(device=d)
+    model = LCOVNet(config.input_channels, config.n_classes).to(device=d)
     with torch.cuda.device(config.gpus[0]):
         net = model
         macs, params = get_model_complexity_info(net, (1, 240, 160, 48), as_strings=True,
